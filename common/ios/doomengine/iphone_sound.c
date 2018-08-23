@@ -75,8 +75,6 @@ void Sound_StartLocalSoundAtVolume( const char *filename, float volume ) {
 	alSourcePlay( ch->sourceName );
 }
 
-// TODO: DEPRECATED AUDIO STUFF
-/*
 static void Sound_Play_f( void ) {
 	if( Cmd_Argc() == 1 ) {
 		Com_Printf( "Usage: play <soundfile>\n" );
@@ -84,7 +82,6 @@ static void Sound_Play_f( void ) {
 	}
 	Sound_StartLocalSound( Cmd_Argv( 1 ) );
 }
-*/
 
 // we won't allow music to be toggled on or off in the menu when this is true
 int otherAudioIsPlaying;
@@ -129,12 +126,11 @@ void Sound_Init( void ) {
     
     // TODO: DEPRECATED AUDIO STUFF
     
-    /*
-	
 	s_sfxVolume		= Cvar_Get( "s_sfxVolume", "1.0", 0 );
 	
 	Cmd_AddCommand( "play", Sound_Play_f );
 	
+    /*
 	// make sure background ipod music mixes with our sound effects
 	Com_Printf( "...Initializing AudioSession\n" );
 	OSStatus status = 0;

@@ -498,13 +498,15 @@ applicationDidFinishLaunching).
 ========================
 */
 // TODO: DEPRECATED
-/*
 void AuthenticateLocalPlayer( id currentViewController, idGameCenterMatchHandler * handler ) {
 	// Early exit if Game Center is not supported.
 	if ( IsAvailable() == false ) {
 		return;
 	}
-
+    
+    NSLog(@"%@ %p", currentViewController, (void*)handler);
+    
+    /*
 	GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
 	[localPlayer authenticateWithCompletionHandler:^(NSError * error) {
 		if ( localPlayer.isAuthenticated )
@@ -565,8 +567,8 @@ void AuthenticateLocalPlayer( id currentViewController, idGameCenterMatchHandler
 		 
 		 HandleError( error );
 	}];
+     */
 }
-*/
 
 /*
 ========================
