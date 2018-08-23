@@ -86,10 +86,13 @@ static bool inTransition = false;
 shouldAutorotateToInterfaceOrientation
 ========================
 */
+// TODO: DEPRECATED
+/*
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	// Return YES for supported orientations.
 	return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
+*/
 
 /*
  ========================
@@ -120,9 +123,12 @@ shouldAutorotateToInterfaceOrientation
  viewDidUnload
  ========================
  */
+// TODO: DEPRECATED
+/*
 - (void)viewDidUnload {
     [super viewDidUnload];
 }
+*/
 
 /*
  ========================

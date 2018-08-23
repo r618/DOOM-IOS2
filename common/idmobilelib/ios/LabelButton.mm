@@ -35,6 +35,8 @@
  */
 - (void)awakeFromNib {
     
+    [super awakeFromNib];
+    
     // Do not optimize my class out
     [idLabel class ];
     [idSlider class];

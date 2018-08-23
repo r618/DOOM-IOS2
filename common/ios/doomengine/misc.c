@@ -60,8 +60,9 @@ void Com_Error( const char *fmt, ... ) {
 	EmailConsole();
 	
 	// drop into the editor
-	abort(); 
-	exit( 1 );
+	abort();
+    // never executed -
+	// exit( 1 );
 }
 
 char *va( const char *format, ... ) {

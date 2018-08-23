@@ -98,6 +98,8 @@ static CGRect  LerpRect( CGRect a, CGRect b, CGFloat t ) {
  ========================
  */
 - (void) awakeFromNib {
+    
+    [super awakeFromNib];
  
     mainRect = mainSelection.frame;
     prevRect = prevSelection.frame;
@@ -159,7 +161,7 @@ static CGRect  LerpRect( CGRect a, CGRect b, CGFloat t ) {
         
     } else {    // Going the left.
         
-        percentage = fabsf( percentage );
+        percentage = fabsf( (float)percentage );
 
         CGRect newMainRect = LerpRect( mainRect, prevRect , percentage );
         CGRect newNextRect = LerpRect( nextRect, mainRect , percentage );

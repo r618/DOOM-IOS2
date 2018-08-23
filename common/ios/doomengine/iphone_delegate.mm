@@ -39,7 +39,10 @@ touch_t		sysTouches[MAX_TOUCHES];
 touch_t		gameTouches[MAX_TOUCHES];
 
 #define FRAME_HERTZ 30.0f
+// TODO: DEPRECATED
+/*
 const static float ACCELEROMETER_UPDATE_INTERVAL = 1.0f / FRAME_HERTZ;
+*/
 
 /*
  ========================
@@ -62,9 +65,13 @@ const static float ACCELEROMETER_UPDATE_INTERVAL = 1.0f / FRAME_HERTZ;
     [ application setStatusBarHidden: YES ];
 	
 	// start the flow of accelerometer events
+    // TODO: DEPRECATED
+    /*
 	UIAccelerometer *accelerometer = [UIAccelerometer sharedAccelerometer];
     [ accelerometer setDelegate: self ];
     [ accelerometer setUpdateInterval: ACCELEROMETER_UPDATE_INTERVAL ];
+    */
+    
     
     [self InitializeInterfaceBuilder ];
 
@@ -147,6 +154,8 @@ const static float ACCELEROMETER_UPDATE_INTERVAL = 1.0f / FRAME_HERTZ;
  accelerometer 
  ========================
  */
+// TODO: DEPRECATED
+/*
 - (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
 {	
 	float acc[4];
@@ -158,6 +167,7 @@ const static float ACCELEROMETER_UPDATE_INTERVAL = 1.0f / FRAME_HERTZ;
     
 	iphoneTiltEvent( acc );
 }
+*/
 
 /*
  ========================

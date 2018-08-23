@@ -277,9 +277,9 @@ void BackgroundTrackMgr::QueueCallback( void * inUserData, AudioQueueRef inAQ, A
 		UInt32 numBytes;
 		while (nPackets == 0) {
 			// if loadAtOnce, get all packets in the file, otherwise ~.5 seconds of data
-			nPackets = THIS->mNumPacketsToRead;					
-			result = AudioFileReadPackets(CurFileInfo->mAFID, false, &numBytes, THIS->mPacketDescs, THIS->mCurrentPacket, &nPackets, 
-										  inCompleteAQBuffer->mAudioData);
+			nPackets = THIS->mNumPacketsToRead;
+            // TODO: DEPRECATED AUDIO STUFF
+			// result = AudioFileReadPackets(CurFileInfo->mAFID, false, &numBytes, THIS->mPacketDescs, THIS->mCurrentPacket, &nPackets, inCompleteAQBuffer->mAudioData);
 			AssertNoError("Error reading file data", end);
 			
 			inCompleteAQBuffer->mAudioDataByteSize = numBytes;	

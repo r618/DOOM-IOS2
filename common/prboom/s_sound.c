@@ -434,7 +434,7 @@ void S_UpdateSounds(void* listener_p)
       channel_t *c = &channels[cnum];
       if ((sfx = c->sfxinfo))
         {
-          if (I_SoundIsPlaying(c->handle))
+          if (I_SoundIsPlaying(c))
             {
               // initialize parameters
               int volume = snd_SfxVolume;
@@ -617,7 +617,7 @@ void S_StopChannel(int cnum)
   if (c->sfxinfo)
     {
       // stop the sound playing
-      if (I_SoundIsPlaying(c->handle))
+      if (I_SoundIsPlaying(c))
         I_StopSound(c->handle);
 
       // check to see

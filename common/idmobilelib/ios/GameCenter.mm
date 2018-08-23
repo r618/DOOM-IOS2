@@ -148,6 +148,8 @@ Called by the system when Game Center receives a packet from another player. I w
 somewhat surprised that this method actually runs on the main thread.
 ========================
 */
+// TODO: DEPRECATED
+/*
 - (void)match:(GKMatch *)match didReceiveData:(NSData *)data fromPlayer:(NSString *)playerID {
 	(void)match;
 	(void)playerID;
@@ -169,12 +171,15 @@ somewhat surprised that this method actually runs on the main thread.
 									 [data bytes],
 									 static_cast<int>( [data length] ) );
 }
+*/
 
 /*
 ========================
 Called by the system when a player's state changes (for example, they connect or disconnect).
 ========================
 */
+// TODO: DEPRECATED
+/*
 - (void)match:(GKMatch *)match player:(NSString *)playerID didChangeState:(GKPlayerConnectionState)state {
 	switch (state)
     {
@@ -197,9 +202,12 @@ Called by the system when a player's state changes (for example, they connect or
         case GKPlayerStateDisconnected:
             matchHandler->playerDisconnected( NSStringToStdString( playerID ) );
 			break;
+            
+        case GKPlayerStateUnknown:
+            break;
     }
 }
-
+*/
 /*
 ========================
 Called by the system if the connection with a player fails.
@@ -235,7 +243,8 @@ Called by the system if the user dismisses the matchmaking interface.
 {
 	switch ( matchmakerMode ) {
 		case MATCH_VIEW_MODAL: {
-			[gameViewController dismissModalViewControllerAnimated:YES];
+            // TODO: DEPRECATED
+			// [gameViewController dismissModalViewControllerAnimated:YES];
     		break;
 		}
 		
@@ -259,7 +268,8 @@ Called by the system if there is an error in the matchmaking process.
 	
 	switch ( matchmakerMode ) {
 		case MATCH_VIEW_MODAL: {
-			[gameViewController dismissModalViewControllerAnimated:YES];
+            // TODO: DEPRECATED
+			// [gameViewController dismissModalViewControllerAnimated:YES];
     		break;
 		}
 		
@@ -276,6 +286,8 @@ Called by the system if there is an error in the matchmaking process.
 Called by the system if it finds a match.
 ========================
 */
+// TODO: DEPRECATED
+/*
 - (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFindMatch:(GKMatch *)match
 {
 	(void)viewController;
@@ -312,6 +324,7 @@ Called by the system if it finds a match.
 		matchHandler->allPlayersConnected( players );
     }
 }
+*/
 
 @end
 
@@ -339,18 +352,19 @@ namespace {
 	// Store the match handler object. This is how we deal with "callbacks" from the Game Center
 	// API.
 	idGameCenterMatchHandler *	matchHandler;
-
-	void			HandleError( NSError * error );
+    // TODO: DEPRECATED / UNUSED
+	// void			HandleError( NSError * error );
 	
 	void 			ConfigureDelegate( matchmakerViewMode_t mode,
 									   id currentViewController,
 									   idGameCenterMatchHandler * handler );
-	
+	// TODO: DEPRECATED
+    /*
 	void SendPacketToPlayerHelper( std::string destinationPlayer,
 								   void *packet,
 					   		 	   std::size_t numBytes,
 							 	   GKMatchSendDataMode mode );
-								   
+	*/
 								   
 								   
 								   
@@ -360,6 +374,8 @@ namespace {
 	sets isAvailable to false.
 	========================
 	*/
+    // TODO: DEPRECATED / UNUSED
+    /*
 	void HandleError( NSError * error ) {
 		if ( error == nil ) {
 			return;
@@ -380,7 +396,7 @@ namespace {
 			}
 		}
 	}
-
+     */
 
 	/*
 	========================
@@ -407,6 +423,8 @@ namespace {
 	Sends a packet to a player ID with the data mode specified in the parameter.
 	========================
 	*/
+    // TODO: DEPRECATED
+    /*
 	void SendPacketToPlayerHelper( std::string destinationPlayer,
 								   void *packet,
 								   std::size_t numBytes,
@@ -436,6 +454,7 @@ namespace {
 			DisplayNSErrorMessage( @"GameKit Error", theError );
 		}
 	}
+     */
 }
 
 namespace idGameCenter {
@@ -478,6 +497,8 @@ possible after the game starts up and is able to display a UI (probably in
 applicationDidFinishLaunching).
 ========================
 */
+// TODO: DEPRECATED
+/*
 void AuthenticateLocalPlayer( id currentViewController, idGameCenterMatchHandler * handler ) {
 	// Early exit if Game Center is not supported.
 	if ( IsAvailable() == false ) {
@@ -545,6 +566,7 @@ void AuthenticateLocalPlayer( id currentViewController, idGameCenterMatchHandler
 		 HandleError( error );
 	}];
 }
+*/
 
 /*
 ========================
@@ -597,7 +619,8 @@ void PresentMatchmaker( id currentViewController, matchParms_t parms, idGameCent
     GKMatchmakerViewController *mmvc = [[[GKMatchmakerViewController alloc] initWithMatchRequest:request] autorelease];
     mmvc.matchmakerDelegate = [MatchDelegate sharedMatchDelegate];
  
-    [(UIViewController*)currentViewController presentModalViewController:mmvc animated:YES];
+    // TODO: DEPRECATED
+    // [(UIViewController*)currentViewController presentModalViewController:mmvc animated:YES];
 }
 
 /*
@@ -645,7 +668,9 @@ Sends an unreliable packet to a single player.
 void SendPacketToPlayerUnreliable( std::string destinationPlayer,
 									   			 void *packet,
 									   			 std::size_t numBytes ) {
-	SendPacketToPlayerHelper( destinationPlayer, packet, numBytes, GKMatchSendDataUnreliable );	
+    // TODO: DEPRECATED
+    NSLog(@"%s %p %lu", destinationPlayer.c_str(), packet, numBytes);
+	// SendPacketToPlayerHelper( destinationPlayer, packet, numBytes, GKMatchSendDataUnreliable );
 }
 
 
@@ -657,7 +682,9 @@ Sends a reliable packet to a single player.
 void SendPacketToPlayerReliable( std::string destinationPlayer,
 											   void *packet,
 											   std::size_t numBytes ) {
-	SendPacketToPlayerHelper( destinationPlayer, packet, numBytes, GKMatchSendDataReliable );	
+    // TODO: DEPRECATED
+    NSLog(@"%s %p %lu", destinationPlayer.c_str(), packet, numBytes);
+	// SendPacketToPlayerHelper( destinationPlayer, packet, numBytes, GKMatchSendDataReliable );
 }
 
 

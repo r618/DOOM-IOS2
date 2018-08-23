@@ -93,7 +93,8 @@ Internal prototypes
 ===============================
 */
 AudioStreamBasicDescription getStreamFormat( void );
-static void printASBD( AudioStreamBasicDescription asbd );
+// TODO: DEPRECATED AUDIO STUFF
+// static void printASBD( AudioStreamBasicDescription asbd );
 static void printErrorMessage( NSString * errorString, OSStatus result );
 static void configureAndInitializeAudioProcessingGraph( MIDIPlayerGraph * player );
 static void startMIDIPlayer( MIDIPlayerGraph * player );
@@ -234,6 +235,10 @@ int Mix_VolumeMusic(int volume) {
 AudioStreamBasicDescription getStreamFormat( void ) {
 
 	AudioStreamBasicDescription streamFormat = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    
+    // TODO: DEPRECATED AUDIO STUFF
+    
+    /*
 
     // The AudioUnitSampleType data type is the recommended type for sample data in audio
     //    units. This obtains the byte size of the type for use in filling in the ASBD.
@@ -253,6 +258,8 @@ AudioStreamBasicDescription getStreamFormat( void ) {
 
     NSLog (@"The stereo stream format for the I/O unit:");
     printASBD( streamFormat );
+     
+     */
 	
 	return streamFormat;
 }
@@ -274,6 +281,8 @@ static void startMIDIPlayer( MIDIPlayerGraph * player ) {
 
 // You can use this method during development and debugging to look at the
 //    fields of an AudioStreamBasicDescription struct.
+// TODO: DEPRECATED AUDIO STUFF
+/*
 static void printASBD( AudioStreamBasicDescription asbd ) {
 
     char formatIDString[5];
@@ -290,7 +299,7 @@ static void printASBD( AudioStreamBasicDescription asbd ) {
     NSLog (@"  Channels per Frame:  %10lu",    asbd.mChannelsPerFrame);
     NSLog (@"  Bits per Channel:    %10lu",    asbd.mBitsPerChannel);
 }
-
+*/
 
 static void printErrorMessage( NSString * errorString, OSStatus result ) {
 
@@ -457,25 +466,34 @@ static OSStatus inputRenderCallback (
 
 	//printf( "Need %lu samples in %lu buffers!\n", inNumberFrames, ioData->mNumberBuffers );
 	
+    // TODO: DEPRECATED AUDIO STUFF
+    /*
 	EAS_I32 generatedThisRender = 0;
 	EAS_I32 totalGenerated = 0;
-	
+	*/
+    
 	// It looks like EAS interleaves stereo samples, so we have to separate them into the two
 	// different buffers that the audio unit provides.
 	//const UInt32 totalInterleavedSamplesNeeded = inNumberFrames * 2;
 	
+    // TODO: DEPRECATED AUDIO STUFF
+    /*
 	AudioBuffer * audioBufferLeft = &ioData->mBuffers[0];
 	AudioBuffer * audioBufferRight = &ioData->mBuffers[1];
-	
+	*/
+    
 	/*
 	printf( "Need %lu samples in %lu buffers!\n"
 			"audioBuffer byte size: %lu channels: %lu\n",
 			inNumberFrames, ioData->mNumberBuffers,
 			audioBuffer->mDataByteSize, audioBuffer->mNumberChannels );
 	*/
+    
+    // TODO: DEPRECATED AUDIO STUFF
+    /*
 	AudioUnitSampleType * hardwareBufferLeft = (AudioUnitSampleType *) audioBufferLeft->mData;
 	AudioUnitSampleType * hardwareBufferRight = (AudioUnitSampleType *) audioBufferRight->mData;
-	
+	*/
 	
 	// EAS_Render always produces BUFFER_SIZE_IN_MONO_SAMPLES frames per call. Currently, this
 	// is defined to 128. Let's fill up a 128 frame buffer, then do a conversion from EAS_PCM
@@ -484,7 +502,10 @@ static OSStatus inputRenderCallback (
 	//
 	// Note that EAS renders interleaved stereo, so we actually a buffer size of
 	// 2 * BUFFER_SIZE_IN_MONO_SAMPLES.
-	
+    
+    
+    // TODO: DEPRECATED AUDIO STUFF
+	/*
 	EAS_PCM rawEASSamples[RAW_EAS_BUFFER_FRAMES * 2];
 	
 	
@@ -507,6 +528,7 @@ static OSStatus inputRenderCallback (
 		
 		totalGenerated += generatedThisRender;
 	}
+     */
 	
 	return noErr;
 }

@@ -312,11 +312,10 @@ namespace idInAppStore {
 		
 		SetProductState( productIdentifier, PRODUCT_WAIT_FOR_PURCHASE );
 	
-		NSString * nsProductIdentifier = [NSString stringWithCString:productIdentifier
-											encoding:NSUTF8StringEncoding];
-		
-		SKPayment * payment = [SKPayment paymentWithProductIdentifier:nsProductIdentifier];
-		[[SKPaymentQueue defaultQueue] addPayment:payment];
+		// NSString * nsProductIdentifier = [NSString stringWithCString:productIdentifier encoding:NSUTF8StringEncoding];
+        // TODO: DEPRECATED
+		// SKPayment * payment = [SKPayment paymentWithProductIdentifier:nsProductIdentifier];
+		// [[SKPaymentQueue defaultQueue] addPayment:payment];
 	}
 	
 	/*

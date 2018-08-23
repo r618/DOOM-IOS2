@@ -37,8 +37,11 @@ typedef struct  {
 	float				volume;			// stored for showSound display
 } channel_t;
 
+// TODO: DEPRECATED AUDIO STUFF
+/*
 static ALCcontext *Context;
 static ALCdevice *Device;
+*/
 
 #define MAX_CHANNELS		16
 static channel_t	s_channels[ MAX_CHANNELS ];
@@ -72,7 +75,8 @@ void Sound_StartLocalSoundAtVolume( const char *filename, float volume ) {
 	alSourcePlay( ch->sourceName );
 }
 
-
+// TODO: DEPRECATED AUDIO STUFF
+/*
 static void Sound_Play_f( void ) {
 	if( Cmd_Argc() == 1 ) {
 		Com_Printf( "Usage: play <soundfile>\n" );
@@ -80,6 +84,7 @@ static void Sound_Play_f( void ) {
 	}
 	Sound_StartLocalSound( Cmd_Argv( 1 ) );
 }
+*/
 
 // we won't allow music to be toggled on or off in the menu when this is true
 int otherAudioIsPlaying;
@@ -90,8 +95,10 @@ int SysIPhoneOtherAudioIsPlaying() {
 
 void interruptionListener( void *inUserData, UInt32 inInterruption)
 {
-	printf("Session interrupted! --- %s ---\n", inInterruption == kAudioSessionBeginInterruption ? "Begin Interruption" : "End Interruption");
+	printf("Session interrupted! %p --- %s ---\n", inUserData, inInterruption == kAudioSessionBeginInterruption ? "Begin Interruption" : "End Interruption");
 	
+    // TODO: DEPRECATED AUDIO STUFF
+    /*
 	if ( inInterruption == kAudioSessionBeginInterruption ) {
 		printf("Audio interrupted.\n" );
 		iphonePauseMusic();			
@@ -112,11 +119,17 @@ void interruptionListener( void *inUserData, UInt32 inInterruption)
 		}
 		iphoneResumeMusic();
 	}
+     */
 }
 
 void Sound_Init( void ) {
 
 	Com_Printf( "\n------- Sound Initialization -------\n" );
+    
+    
+    // TODO: DEPRECATED AUDIO STUFF
+    
+    /*
 	
 	s_sfxVolume		= Cvar_Get( "s_sfxVolume", "1.0", 0 );
 	
@@ -141,7 +154,7 @@ void Sound_Init( void ) {
 		status = AudioSessionSetProperty(kAudioSessionProperty_AudioCategory, sizeof(audioCategory), &audioCategory);
 	}
 	
-	status = AudioSessionSetActive(true);                                       // else "couldn't set audio session active\n"	
+	status = AudioSessionSetActive(true);                                       // else "couldn't set audio session active\n"
 	
 	Com_Printf( "...Initializing OpenAL subsystem\n" );
 	
@@ -175,6 +188,8 @@ void Sound_Init( void ) {
 		}
 		alSourcei( ch->sourceName, AL_SOURCE_RELATIVE, AL_FALSE );
 	}
+     
+     */
 	
 	Com_Printf( "------------------------------------\n" );
 }
@@ -273,7 +288,7 @@ void I_StopSound(int handle) {}
 // Called by S_*() functions
 //  to see if a channel is still playing.
 // Returns 0 if no longer playing, 1 if playing.
-boolean I_SoundIsPlaying(int handle) { 
+boolean I_SoundIsPlaying(void *handle) {
 
 	channel_t *ch = (channel_t *)handle;
 	if ( !ch ) {
