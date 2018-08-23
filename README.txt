@@ -1,3 +1,12 @@
+This was a fun exercise, but if you want the *REAL* thing running without problems on contemporary iOS (as of iOS 11), you want (the awesome) work by tomkidd here:
+
+https://github.com/tomkidd/DOOM-iOS
+
+(I loved spending two evenings with this to get it running, so I'm keeping it here. (Isn't that a fate of majority github's projects overall ? Idk.r))
+
+
+
+
 DOOM Classic iOS v3.0 GPL source release
 ===============================================
 
